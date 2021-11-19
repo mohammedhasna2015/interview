@@ -7,9 +7,9 @@ import 'package:test_flutter/utils/api_path.dart';
 
 class LoginService {
 
-  Future<ResponseModel> login(String phoneNumber) async {
+  Future<ResponseModel> login({Map<String,dynamic>? data}) async {
 
-    var response = await BaseService().postRequest("/api/method/ash7anly.auth1.login",{"phone":"505632750", "msg_via": "sms"},
+    var response = await BaseService().postRequest(login_path,data,
         {});
     return response.isSuccess
         ? ResponseModel(data: LoginDao.fromJson(json.decode(response.data)))

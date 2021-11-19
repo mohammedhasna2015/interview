@@ -17,9 +17,11 @@ class LoginViewModel extends BaseViewModel{
     login();
   }
 
-  
   void login(){
-    loginService!.login("505632750").then((value) {
+    loginService!.login(data: {
+      "phone":"505632750",
+      "msg_via": "sms"
+    }).then((value) {
       if(value.isSuccess){
         print("login:success");
         ScaffoldMessenger.of(getIt<NavigationService>().navigatorKey.currentContext!)
