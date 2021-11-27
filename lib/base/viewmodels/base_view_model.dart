@@ -9,7 +9,7 @@ abstract class BaseViewModel extends ChangeNotifier {
  late var _initState;
 
   BaseViewModel() {
-    _init();
+   _init();
   }
 
   FutureOr<void> init();
@@ -25,7 +25,7 @@ abstract class BaseViewModel extends ChangeNotifier {
   void changeStatus() => isLoading = !isLoading;
 
   void reloadState() {
-    if (!isLoading) notifyListeners();
+     notifyListeners();
   }
 
   @override

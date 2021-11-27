@@ -30,11 +30,18 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider:
   http:
+  hive:
+  hive_generator: ^1.1.1
+  path_provider:
   shared_preferences:
+  connectivity:
+  flutter_screenutil: ^5.0.0+2
+  hive_flutter: ^1.1.0
   get_it:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

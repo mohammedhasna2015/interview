@@ -2,34 +2,36 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:test_flutter/utils/api_path.dart';
+import 'package:test_flutter/utils/shard.dart';
 
 class BaseService {
   static BaseService _instance = new BaseService.internal();
-  static final String baseUrl ="https://app.rasseed.com" ;
+  static final String baseUrl ="http://205.134.254.135/~mobile/" ;
 
   BaseService.internal();
 
   factory BaseService() => _instance;
 
   Future<ServiceResponseModel> getRequest(String path, {int timeOut = 30}) async {
-    // i can add here check connectivity
-    try {
-      return http.get(Uri.parse("$baseUrl$path")).timeout(Duration(seconds: timeOut)).then((http.Response response) async {
-        int statusCode = response.statusCode;
-        if (statusCode == 200) {
-          return ServiceResponseModel(isSuccess: true, data: response.body);
-        } else {
-          return ServiceResponseModel(errorMessage: "Connection failed by $statusCode code.");
-        }
-      });
-    } catch (e) {
-      return ServiceResponseModel(errorMessage: "Undefined problem happened!");
-    }
+
+      try {
+        return http.get(Uri.parse("$baseUrl$path")).timeout(Duration(seconds: timeOut)).then((http.Response response) async {
+          int statusCode = response.statusCode;
+          if (statusCode == 200) {
+            return ServiceResponseModel(isSuccess: true, data: response.body);
+          } else {
+            return ServiceResponseModel(errorMessage: "Connection failed by $statusCode code.");
+          }
+        });
+      } catch (e) {
+        return ServiceResponseModel(errorMessage: "Undefined problem happened!");
+      }
+
   }
-  Future<ServiceResponseModel> postRequest(String? path,Map<String,dynamic>? body,Map<String,String>? header, {int timeOut = 30}) async {
+  Future<ServiceResponseModel> postRequest({String? path,Map<String,dynamic>? body,Map<String,String>? header }) async {
     // i can add here check connectivity
     try {
-      return http.post(Uri.parse("$baseUrl$path"),body: json.encode(body),headers: header).timeout(Duration(seconds: timeOut)).then((http.Response response) async {
+      return http.post(Uri.parse("$baseUrl$path"),body: json.encode(body),headers: header).timeout(Duration(seconds:30)).then((http.Response response) async {
         int statusCode = response.statusCode;
         if (statusCode == 200) {
           print("postRequest:success");

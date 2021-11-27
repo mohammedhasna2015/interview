@@ -3,16 +3,16 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_flutter/screens/login/login_screen.dart';
+import 'package:test_flutter/screens/cart/cart_screen.dart';
 
 class Routers {
 
   static Route<dynamic> generateRoute(RouteSettings? settings) {
     switch (settings!.name) {
-      case LoginScreen.id:
+      case CartScreen.id:
         return MaterialPageRoute(
           builder: (_) =>
-          LoginScreen(),
+          CartScreen(),
         );
       default:
         return MaterialPageRoute(
